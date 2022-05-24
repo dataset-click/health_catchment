@@ -5,7 +5,7 @@
 create table nvd.blue_1hr as
 select nodeid, bk.geom, hp.name, owner, color, remark, trafficlight ,dist, physical_dist
 from nvd.blue_100km bk
-join hospital.hospital_paper hp
+join hospital.hospital_ambulance hp
   on (owner = 'f'||hp.id)
 where 
   hp.metropolitan is null
@@ -13,6 +13,6 @@ where
 union
 select nodeid, bk.geom, hp.name, owner, color, remark, trafficlight ,dist, physical_dist
 from nvd.blue_100km bk
-join hospital.hospital_paper hp
+join hospital.hospital_ambulance hp
   on (owner = 'f'||hp.id)
 where hp.metropolitan ='Y' and dist<=30000;
