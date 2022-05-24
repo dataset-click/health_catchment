@@ -97,31 +97,31 @@ left outer join
  on (aans.nearest = x1hr.nodeid) 
  left outer join 
 	(select * from nvd.t2251_983_nodes x
-	join hospital.hospital_paper hp
+	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
 	where hp.class='BLUE') b
 on (aans.nearest = b.nodeid)
 left outer join  
 	(select * from nvd.t2251_1340_nodes x
-	join hospital.hospital_paper hp
+	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
 	where hp.class='GREEN') g
 on (aans.nearest = g.nodeid)
 left outer join 
 	(select * from nvd.t2252_170_nodes x
-	join hospital.hospital_paper hp
+	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
 	where hp.class='ORANGE') o
 on (aans.nearest = o.nodeid)
 left outer join 
 	(select * from nvd.t2252_683_nodes x
-	join hospital.hospital_paper hp
+	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
 	where hp.class='RED') r
 on (aans.nearest = r.nodeid)
 left outer join 
 	(select * from nvd.t2268_787_nodes x
-	join hospital.hospital_paper hp
+	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
 	where hp.class='AMBO') am
 on (aans.nearest = am.nodeid)
