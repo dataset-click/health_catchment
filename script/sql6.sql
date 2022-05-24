@@ -1,8 +1,8 @@
 # SQL6
 # this SQL will identify the options from each sampled address
-drop table regression.address_all_new_sample10_blue_options;
+drop table catchment.address_all_new_sample10_blue_options;
 
-create table regression.address_all_new_sample10_blue_options as
+create table catchment.address_all_new_sample10_blue_options as
 select a.address_detail_pid, a.lga_code,a.ste_name16,
   a.nearest_blue ,
   a.blue_dist_km ,
@@ -22,7 +22,7 @@ select a.address_detail_pid, a.lga_code,a.ste_name16,
   e."owner" blue_1hr_options,
   e.dist_km blue_1hr_distance,
   e.num blue_1hr_num   
-from regression.address_all_new_sample10_catch a
+from catchment.address_all_new_sample10_catch a
 left outer join nvd.blue_100km_options b
 on (a.n100 = b.nodeid)
 left outer join nvd.blue_70km_options c
