@@ -32,70 +32,9 @@ select  address_detail_pid,
 	case 
 		when am.metropolitan='Y' then  (round(aans.dist + am.dist::numeric/1000,2)/30)
 		else (round(aans.dist + am.dist::numeric/1000,2)/70) end ambo_dist_hr,
-	round(aans.dist + am.dist::numeric/1000,2) ambo_dist_km,
-	x100.nodeid  n100, 
-	x70.nodeid n70,
-	x50.nodeid n50,
-	x30.nodeid n30,
-	x1hr.nodeid n1hr
+	round(aans.dist + am.dist::numeric/1000,2) ambo_dist_km
 from gnaf.address_all_new_sample10 aans 
 left outer join 
-	(select nodeid from nvd.ambo_100km_options
-	 union
-	 select nodeid from nvd.blue_100km_options
-	 union
-	 select nodeid from nvd.green_100km_options
-	 union
-	 select nodeid from nvd.orange_100km_options
-	 union
-	 select nodeid from nvd.red_100km_options 
-	 ) x100 
- on (aans.nearest = x100.nodeid)
- left outer join 
-	(select nodeid from nvd.ambo_70km_options
-	 union
-	 select nodeid from nvd.blue_70km_options
-	 union
-	 select nodeid from nvd.green_70km_options
-	 union
-	 select nodeid from nvd.orange_70km_options
-	 union
-	 select nodeid from nvd.red_70km_options ) x70 
- on (aans.nearest = x70.nodeid)
- left outer join 
-	(select nodeid from nvd.ambo_50km_options
-	 union
-	 select nodeid from nvd.blue_50km_options
-	 union
-	 select nodeid from nvd.green_50km_options
-	 union
-	 select nodeid from nvd.orange_50km_options
-	 union
-	 select nodeid from nvd.red_50km_options ) x50 
- on (aans.nearest = x50.nodeid)
- left outer join 
-	(select nodeid from nvd.ambo_30km_options
-	 union
-	 select nodeid from nvd.blue_30km_options
-	 union
-	 select nodeid from nvd.green_30km_options
-	 union
-	 select nodeid from nvd.orange_30km_options
-	 union
-	 select nodeid from nvd.red_30km_options ) x30 
- on (aans.nearest = x30.nodeid)
- left outer join 
-	(select nodeid from nvd.ambo_1hr_options
-	 union
-	 select nodeid from nvd.blue_1hr_options
-	 union
-	 select nodeid from nvd.green_1hr_options
-	 union
-	 select nodeid from nvd.orange_1hr_options
-	 union
-	 select nodeid from nvd.red_1hr_options ) x1hr 
- on (aans.nearest = x1hr.nodeid) 
- left outer join 
 	(select * from nvd.t2251_983_nodes x
 	join hospital.hospital_ambulance hp
 	on (x.owner = 'f'||hp.id)
