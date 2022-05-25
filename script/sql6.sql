@@ -24,15 +24,15 @@ select a.address_detail_pid, a.lga_code,a.ste_name16,
   e.num blue_1hr_num   
 from catchment.address_all_new_sample10_catch a
 left outer join nvd.blue_100km_options b
-on (a.n100 = b.nodeid)
+on (a.nearest = b.nodeid)
 left outer join nvd.blue_70km_options c
-on (a.n70 = c.nodeid)
+on (a.nearest = c.nodeid)
 left outer join nvd.blue_50km_options d
-on (a.n50 = d.nodeid)
+on (a.nearest = d.nodeid)
 left outer join nvd.blue_30km_options e
-on (a.n30 = e.nodeid)
+on (a.nearest = e.nodeid)
 left outer join nvd.blue_1hr_options f
-on (a.n1hr = f.nodeid)
+on (a.nearest = f.nodeid)
 where a.blue_dist_km is not null
 order by ste_name16 , lga_code , address_detail_pid ;
 
